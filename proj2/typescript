@@ -1,52 +1,0 @@
-Script started on Sun 05 Mar 2017 04:57:11 PM EST
-[stommel1@linux3 proj2]ls
-escapeseqs.asm  Makefile  typescript
-[stommel1@linux3 proj2]make
-nasm -g -f elf -l escapeseqs.lst escapeseqs.asm -o escapeseqs.o
-ld -g -melf_i386 escapeseqs.o -o escapeseqs.out
-[stommel1@linux3 proj2]ls
-escapeseqs.asm  escapeseqs.lst  escapeseqs.o  [0m[38;5;34mescapeseqs.out[0m  Makefile  typescript
-[m[stommel1@linux3 proj2]./escapeseqs.out 
-Enter string: abc \A def \43 ghi \411\h\x
-Unknown escape sequence \A
-ERROR: octal value overflow!
-Unknown escape sequence \h
-Unknown escape sequence \x
-Original: abc \A def \43 ghi \411\h\x
-Convert:  abc \ def # ghi \\\
-[stommel1@linux3 proj2]./escapeseqs.out 
-Enter string: \101\102\103\104\105\e\j\Q^[[D         b     b\105\e\j\Q
-Unknown escape sequence \e
-Unknown escape sequence \j
-Unknown escape sequence \Q
-Original: \101\102\103\104\b\105\e\j\Q
-Convert:  ABCDE\\\
-[stommel1@linux3 proj2]./escapeseqs.out 
-Enter string: abc\439\fxyz\\
-Original: abc\439\fxyz\\
-Convert:  abc#9xyz\
-[stommel1@linux3 proj2]./escapeseqs.out 
-Enter string: up\vand\vup\vand\vup\vand\vup
-Original: up\vand\vup\vand\vup\vand\vup
-Convert:  upandupandupandup
-[stommel1@linux3 proj2]./escapeseqs.out 
-Enter string: Yowza\nThis is exciting\a\7\007!
-Original: Yowza\nThis is exciting\a\7\007!
-Convert:  Yowza
-This is exciting!
-[stommel1@linux3 proj2]./escapeseqs.out 
-Enter string: This is weird...\rYOWZA!!!! THAT\12
-Original: This is weird...\rYOWZA!!!! THAT\12
-Convert:  This is weird...YOWZA!!!! THAT
-
-[stommel1@linux3 proj2]./escapeseqs.out 
-Enter string: ascii goat\t\a\7\07\007<3\n      \\\n  ___/o>\n-(___)"\n '' ''
-Original: ascii goat\t\a\7\07\007<3\n      \\\n  ___/o>\n-(___)"\n '' ''
-Convert:  ascii goat	<3
-      \
-  ___/o>
--(___)"
- '' ''
-[stommel1@linux3 proj2]^Dexit
-
-Script done on Sun 05 Mar 2017 04:59:47 PM EST
